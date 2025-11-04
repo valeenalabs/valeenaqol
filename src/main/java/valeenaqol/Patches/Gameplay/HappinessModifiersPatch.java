@@ -1,11 +1,9 @@
-package bunkbeds.Patches.Gameplay;
+package valeenaqol.Patches.Gameplay;
 
-import necesse.engine.localization.message.GameMessage;
 import necesse.engine.localization.message.GameMessageBuilder;
 import necesse.engine.modLoader.annotations.ModMethodPatch;
 import necesse.entity.mobs.friendly.human.HappinessModifier;
 import necesse.entity.mobs.friendly.human.HumanMob;
-import necesse.level.maps.levelData.settlementData.ServerSettlementData;
 import necesse.level.maps.levelData.settlementData.SettlementBed;
 import necesse.level.maps.levelData.settlementData.SettlementRoom;
 import necesse.level.maps.levelData.settlementData.settler.*;

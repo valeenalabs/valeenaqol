@@ -5,11 +5,11 @@ plugins {
 // Change the values below this to your mods values
 // To change the project name, edit the settings.gradle file
 
-project.ext.modID = "bunkbeds" // The unique id of your mod. Must be all lowercase and cannot use special characters.
-project.ext.modName = "BunkBeds" // The display name of your mod.
+project.ext.modID = "valeenaqol" // The unique id of your mod. Must be all lowercase and cannot use special characters.
+project.ext.modName = "Valeena's QOL" // The display name of your mod.
 project.ext.modVersion = "1.0.0" // Your current builds version. Must follow the xx.xx... format.
 project.ext.gameVersion = "1.0.2" // The target game version.
-project.ext.modDescription = "A Necesse mod" // Short description of what your mod is.
+project.ext.modDescription = "Some quality of life fixes by Valeena" // Short description of what your mod is.
 project.ext.author = "Valeena" // Your name
 
 /**
@@ -77,9 +77,9 @@ sourceSets {
         java {
             destinationDirectory.set(new File(modOutputDir, "classes"))
         }
-       
+
         output.resourcesDir = new File(modOutputDir, "resources")
-       
+
         // Adds libDepends configuration to classpath
         compileClasspath += configurations.libDepends
     }
@@ -116,11 +116,11 @@ task createModInfoFile(type: JavaExec) {
     description = "Creates the mod info file"
 
     classpath = files(gameDirectory + "/Necesse.jar")
-  doFirst {
-    sourceSets.main.java.destinationDirectory.get().asFile.mkdirs()
-  }
+    doFirst {
+        sourceSets.main.java.destinationDirectory.get().asFile.mkdirs()
+    }
 
-  mainClass.set("CreateModInfoFile")
+    mainClass.set("CreateModInfoFile")
     args = ["-file", "${sourceSets.main.java.destinationDirectory.get()}/mod.info",
             "-id", "${project.ext.modID}",
             "-name", "${project.ext.modName}",
@@ -182,14 +182,14 @@ task buildModJar(type: Jar) {
         }
     }
 
-  // Add compiled classes and generated resources
-  from sourceSets.main.java.destinationDirectory.get()
-  // Add resources under 'resources/' prefix in JAR
-  from(sourceSets.main.output.resourcesDir) {
-    into 'resources'
-  }
-  // Add the dependencies
-  from configurations.libDepends.collect { it.isDirectory() ? it : zipTree(it) }
+    // Add compiled classes and generated resources
+    from sourceSets.main.java.destinationDirectory.get()
+    // Add resources under 'resources/' prefix in JAR
+    from(sourceSets.main.output.resourcesDir) {
+        into 'resources'
+    }
+    // Add the dependencies
+    from configurations.libDepends.collect { it.isDirectory() ? it : zipTree(it) }
 
     archiveFileName.set("${jarName}.jar")
     destinationDirectory.set(file(buildLocation))
