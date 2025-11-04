@@ -1,3 +1,2 @@
-[item]
-examplesword=Example Sword
-examplesworddesc=A powerful example weapon
+[settingsui]
+REMOVE_DOUBLE_BED_PENALTY=Remove Double Bed Penalty

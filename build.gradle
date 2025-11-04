@@ -6,7 +6,7 @@ plugins {
 // To change the project name, edit the settings.gradle file
 
 project.ext.modID = "valeenaqol" // The unique id of your mod. Must be all lowercase and cannot use special characters.
-project.ext.modName = "Valeena's QOL" // The display name of your mod.
+project.ext.modName = "ValeenaQOL" // The display name of your mod.
 project.ext.modVersion = "1.0.0" // Your current builds version. Must follow the xx.xx... format.
 project.ext.gameVersion = "1.0.2" // The target game version.
 project.ext.modDescription = "Some quality of life fixes by Valeena" // Short description of what your mod is.
@@ -24,7 +24,7 @@ project.ext.clientside = false
  * Dependencies define the default load order of mods
  * Uncomment and configure these if your mod has dependencies
  */
-project.ext.modDependencies = ["aizsave.modsettingslib"]
+project.ext.modDependencies = ["aizsave.customsettingslib"]
 //project.ext.modOptionalDependencies = ["optional.modid1", "optional.modid2"]
 
 // The path to the games install directory
@@ -98,9 +98,7 @@ dependencies {
     implementation files(gameDirectory + "/Necesse.jar")
     implementation fileTree(gameDirectory + "/lib/")
     implementation fileTree("./mods/") // Add all mods located in local mods folder
-    compileOnly files('libs/ModSettingsLib-0.33.1-1.2.3.jar')
-    implementation files('libs/ModSettingsLib-0.33.1-1.2.3.jar')
-
+    compileOnly files('libs/customsettingslib.jar')
     // Add any third party library dependencies here. Remember to use libDepends, so that they will be added to your jar on build
     // These are some examples:
 //    libDepends group: 'com.google.guava', name: 'guava', version: '31.1-jre'

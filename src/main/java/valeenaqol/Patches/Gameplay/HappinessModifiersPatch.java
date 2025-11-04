@@ -10,6 +10,7 @@ import necesse.level.maps.levelData.settlementData.settler.*;
 import net.bytebuddy.asm.Advice.OnMethodExit;
 import net.bytebuddy.asm.Advice.Return;
 import net.bytebuddy.asm.Advice.This;
+import valeenaqol.ValeenaQOL;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,9 @@ import java.util.List;
 public class HappinessModifiersPatch {
 	@OnMethodExit
 	static void onExit(@This HumanMob ThisSettler, @Return(readOnly = false) List<HappinessModifier> list) {
+		if (!ValeenaQOL.settingGetter.getBoolean("REMOVE_DOUBLE_BED_PENALTY")) {
+			return;
+		}
 		ArrayList<HappinessModifier> Modifiers = new ArrayList<>();
 
 		if (ThisSettler.getWorldEntity() != null) {
@@ -42,8 +46,10 @@ public class HappinessModifiersPatch {
 					if (Room != null) {
 						int NumberOfOccupiedBeds = Bed.getRoom().getOccupiedBeds();
 						if (NumberOfOccupiedBeds == 2) {
+							//System.out.println(ThisSettler.getSettlerName() + " | " + NumberOfOccupiedBeds + "| true");
 							Modifiers.add(new HappinessModifier(0, (new GameMessageBuilder()).append("settlement", "sharingroom")));
 						} else if (NumberOfOccupiedBeds >= 3) {
+							//System.out.println(ThisSettler.getSettlerName() + " | " + NumberOfOccupiedBeds + "| false");
 							Modifiers.add(new HappinessModifier(-10 * NumberOfOccupiedBeds, (new GameMessageBuilder()).append("settlement", "sharingroom")));
 						}
 
@@ -78,6 +84,6 @@ public class HappinessModifiersPatch {
 				}
 			}
 		}
-		//list = Modifiers;
+		list = Modifiers;
 	}
 }
